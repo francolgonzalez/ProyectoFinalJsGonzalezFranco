@@ -37,6 +37,5 @@ for (const resultado of resultadosArray) {
 
 alert (contenidoArray);
 
-alert ("¡Lo esperamos en su proximo calculo!");
 
 
