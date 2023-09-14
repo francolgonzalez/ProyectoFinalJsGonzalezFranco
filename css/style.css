@@ -69,7 +69,7 @@ body {
     font-weight: bold;
     transition: all 0.6s ease;
     color: #f8df4e;
-    margin-bottom: 300px;
+    margin-bottom: 10px;
 }
 
 .btnForm:hover {
@@ -95,7 +95,7 @@ body {
     text-align: center;
     width: 30%;
     height: 40%;
-    top: 40%;
+    top: 47%;
 }
 
 

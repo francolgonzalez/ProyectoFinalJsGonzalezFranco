@@ -1,3 +1,4 @@
+
 const formCalculo = document.querySelector ('#formCalculo')
 const inputNumero = document.querySelector ('#inputNumero')
 const inputPorcentaje = document.querySelector ('#inputPorcentaje')
@@ -58,9 +59,3 @@ function borrarTodo() {
 }
 
 btnFormBorrar.addEventListener("click", borrarTodo)
-
-
-
-
-
-
