@@ -1,7 +1,8 @@
 const formCalculo = document.querySelector ('#formCalculo')
 const inputNumero = document.querySelector ('#inputNumero')
 const inputPorcentaje = document.querySelector ('#inputPorcentaje')
-const btnForm = document.querySelector ('#btnForm')
+const btnFormCalcular = document.querySelector ('#inputBtnCalcular')
+const btnFormBorrar = document.querySelector ('#inputBtnBorrar')
 const calculosContainer = document.querySelector ('#calculosContainer')
 
 const arrayCalculos = JSON.parse(localStorage.getItem('calculos')) || []
@@ -17,8 +18,8 @@ class Calculo {
 formCalculo.addEventListener("submit", e => {
     
     e.preventDefault()
-    const numero = inputNumero.value
-    const porcentaje = inputPorcentaje.value
+    const numero = parseFloat(inputNumero.value)
+    const porcentaje = parseFloat(inputPorcentaje.value)
     
     const resultado = (numero / 100) * porcentaje
     
@@ -26,8 +27,8 @@ formCalculo.addEventListener("submit", e => {
     inputPorcentaje.value = ""
 
     const calculo = new Calculo (numero, porcentaje, resultado)
-
-    guardarCalculos()
+    
+    guardarCalculos(calculo)
     imprimirCalculos()
 })   
 
@@ -38,15 +39,25 @@ function guardarCalculos (calculo) {
 
 function imprimirCalculos() {
     let historialCalculos = ''
-    for (const calculo of arrayCalculos) {
-        historialCalculos += Calculo `Número ${calculo.numero}, Porcentaje ${calculo.porcentaje}, Resultado ${calculo.resultado}<br>`
-    }
+    if (arrayCalculos && arrayCalculos.length > 0){
+        for (const calculo of arrayCalculos) {
+            if(calculo!=null && !isNaN(calculo.numero) && !isNaN(calculo.porcentaje) && !isNaN(calculo.resultado)){
+            historialCalculos += `Número: ${calculo.numero}, Porcentaje: ${calculo.porcentaje}, Resultado: ${calculo.resultado}<br>`
+            }
+        }    
+    }  
     calculosContainer.innerHTML = historialCalculos
 }
 
 imprimirCalculos()
 
+function borrarTodo() {
+    arrayCalculos.length = 0
+    localStorage.removeItem('calculos')
+    calculosContainer.innerHTML = ''
+}
 
+btnFormBorrar.addEventListener("click", borrarTodo)
 
 
 
