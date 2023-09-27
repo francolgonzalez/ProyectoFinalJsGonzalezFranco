@@ -1,4 +1,4 @@
-Tercera Pre-Entrega Gonzalez Franco
+Proyecto Final Gonzalez Franco
 
 Link del repo: https://github.com/francolgonzalez/ProyectoFinalJsGonzalezFranco
 

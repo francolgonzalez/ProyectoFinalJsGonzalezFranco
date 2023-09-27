@@ -16,12 +16,35 @@ class Calculo {
     }
 }
 
-formCalculo.addEventListener("submit", e => {
-    
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout (() => {
+        Toastify({
+            text: "Recuerda usar caracteres válidos.",
+            duration: 5000,
+            gravity: "top", 
+            position: "right", 
+            stopOnFocus: true,
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }}).showToast();
+    }, 5000)
+})
+
+
+btnFormCalcular.addEventListener("click", e => {
     e.preventDefault()
     const numero = parseFloat(inputNumero.value)
     const porcentaje = parseFloat(inputPorcentaje.value)
     
+    if (isNaN(numero) || isNaN(porcentaje)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Ingreso un carácter no válido',
+            text: 'Por favor, ingrese un número.',
+        });
+        return;
+    }
+
     const resultado = (numero / 100) * porcentaje
     
     inputNumero.value = ""
@@ -31,7 +54,7 @@ formCalculo.addEventListener("submit", e => {
     
     guardarCalculos(calculo)
     imprimirCalculos()
-})   
+}) 
 
 function guardarCalculos (calculo) {
     arrayCalculos.push(calculo)
@@ -58,4 +81,24 @@ function borrarTodo() {
     calculosContainer.innerHTML = ''
 }
 
-btnFormBorrar.addEventListener("click", borrarTodo)
+btnFormBorrar.addEventListener("click", e => {
+    e.preventDefault()
+    Swal.fire({
+        title: '¿Está seguro?',
+        text: "Se borrará todo su historial de cálculos",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, borrar.'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            '¡Borrado!',
+            'Su historial ha sido borrado',
+            'success'
+          )
+          borrarTodo()
+        }
+      })
+})
