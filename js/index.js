@@ -72,7 +72,7 @@ btnFormCalcular.addEventListener("click", e => {
     
     inputNumero.value = ""
     inputPorcentaje.value = ""
-
+// 
     const calculo = new Calculo (numero, porcentaje, resultado)
     
     guardarCalculos(calculo)
