@@ -5,6 +5,7 @@ const inputPorcentaje = document.querySelector ('#inputPorcentaje')
 const btnFormCalcular = document.querySelector ('#inputBtnCalcular')
 const btnFormBorrar = document.querySelector ('#inputBtnBorrar')
 const calculosContainer = document.querySelector ('#calculosContainer')
+const selectConstantes = document.querySelector ('#selectConstantes')
 
 const arrayCalculos = JSON.parse(localStorage.getItem('calculos')) || []
 
@@ -28,6 +29,28 @@ document.addEventListener('DOMContentLoaded', () => {
               background: "linear-gradient(to right, #00b09b, #96c93d)",
         }}).showToast();
     }, 5000)
+    
+    fetch('./datos/datos.json')
+    .then(res => res.json())
+    .then(obj => {
+        const constantes = obj.constantes
+        for (const c of constantes) {
+            const option = document.createElement('option')
+            option.value = c.valor
+            option.text = c.nombre
+            selectConstantes.appendChild(option)
+        }
+    })
+})
+
+selectConstantes.addEventListener('change', () => {
+    const valorSeleccionado = parseFloat(selectConstantes.value)
+
+    if(!isNaN((valorSeleccionado))) {
+        inputPorcentaje.value = valorSeleccionado
+    } else {
+        inputPorcentaje.value = ''
+    }
 })
 
 
@@ -102,3 +125,4 @@ btnFormBorrar.addEventListener("click", e => {
         }
       })
 })
+

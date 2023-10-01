@@ -1,0 +1,20 @@
+{
+    "constantes": [
+        {
+            "nombre": "π (Pi)",
+            "valor": 3.14159265359
+        },
+        {
+            "nombre": "φ (Phi)",
+            "valor": 1.61803398875
+        },
+        {
+            "nombre": "e (Euler)",
+            "valor": 2.71828182846
+        },
+        {
+            "nombre": "g (Gravedad)",
+            "valor": 9.81
+        }
+    ]
+}
